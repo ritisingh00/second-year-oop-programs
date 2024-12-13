@@ -1,0 +1,109 @@
+#include <iostream> 
+ 
+using namespace std; 
+ 
+class Details { 
+int age; 
+int income; 
+int vehicle; 
+string city; 
+ 
+public: 
+    Details(){ 
+    while (true) { 
+            try { 
+                int age; 
+                cout << "Exception Handling!" << endl; 
+                cout << "Enter age: "; 
+                cin >> age; 
+ 
+                if (age > 18 && age < 55) { 
+                    cout << "Access Granted" << endl; 
+                    break; 
+                } else { 
+                    throw age; 
+                } 
+            } catch (int age) { 
+                cout << "You are not eligible" << endl; 
+                cout << "Your Age must be between 18 and 55! \nYour Age is: " << age << endl; 
+                cout << "Please re-enter your age." << endl; 
+            } 
+        } 
+ 
+    while(true){ 
+ 
+    try{ 
+    int income; 
+    cout<<"Enter income: "; 
+    cin>>income; 
+    if (income > 50000 && income < 100000 ){ 
+            cout<<"Access Granted"<<endl; 
+            break; 
+        }else{ 
+        throw(income); 
+        } 
+ 
+    } 
+ 
+    catch(int income){ 
+        cout<<"You are not eligible"<<endl; 
+        cout<<"Your Income must be between 50000 to 100000! \n Your Income is : 
+"<<income<<endl; 
+        cout << "Please re-enter your income." << endl; 
+    } 
+    } 
+ 
+    while(true){ 
+    try{ 
+    string city; 
+    cout<<"Enter Your City: "; 
+    cin>>city; 
+    if (city == "Pune" || city == "Mumbai" || city == "Bangalore" || city == "Chennai" ){ 
+            cout<<"Access Granted"<<endl; 
+            break; 
+        }else{ 
+        throw(city); 
+        } 
+ 
+    } 
+ 
+    catch(string city){ 
+        cout<<"You are not eligible"<<endl; 
+        cout<<"You must staying in Cities like -> Pune, Mumbai, Bangalore, Chennai!\n Your 
+City is : "<<city<<endl; 
+        cout << "Please re-enter your City." << endl; 
+    } 
+    } 
+ 
+   while(true){ 
+     try{ 
+    int vehicle; 
+    cout<<"Enter Your Vehicle Type (Eg: 4 wheeler = 4): "; 
+    cin>>vehicle; 
+    if (vehicle == 4){ 
+            cout<<"Access Granted"<<endl; 
+            break; 
+        }else{ 
+        throw(vehicle); 
+        } 
+ 
+    } 
+ 
+    catch(int vehicle){ 
+        cout<<"You are not eligible"<<endl; 
+        cout<<"You must have 4 wheeler! \n Your Vehicle Type is : "<<vehicle<<" 
+Wheelers"<<endl; 
+        cout << "Please re-enter your Vehicle Type." << endl; 
+    } 
+   } 
+    } 
+}; 
+ 
+ 
+int main() 
+{ 
+    Details a; 
+    cout<<"Thankyou for showing your Interest!"<<endl; 
+ 
+    return 0; 
+} 
