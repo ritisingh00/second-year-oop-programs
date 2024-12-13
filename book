@@ -1,0 +1,92 @@
+#include <iostream> 
+#include <string> 
+using namespace std; 
+ 
+class Book { 
+private: 
+    string author; 
+    string title; 
+    float price; 
+    string publisher; 
+    int stock; 
+ 
+public: 
+    Book() : author(""), title(""), price(0.0), publisher(""), stock(0) {} 
+ 
+    void getData() { 
+        cout << "Enter author: "; 
+        cin.ignore(); 
+        getline(cin, author); 
+        cout << "Enter title: "; 
+        getline(cin, title); 
+        cout << "Enter price: "; 
+        cin >> price; 
+        cout << "Enter publisher: "; 
+        cin.ignore(); 
+        getline(cin, publisher); 
+        cout << "Enter stock position: "; 
+        cin >> stock; 
+    } 
+ 
+    void displayData() const { 
+        cout << "Author: " << author << "\nTitle: " << title << "\nPrice: " << price 
+             << "\nPublisher: " << publisher << "\nStock: " << stock << endl; 
+    } 
+ 
+    bool searchBook(const string& searchTitle, const string& searchAuthor) const { 
+        return (title == searchTitle && author == searchAuthor); 
+    } 
+ 
+    bool processSale(int copies) { 
+        if (copies <= stock) { 
+            stock -= copies; 
+            cout << "Total cost: " << (price * copies) << endl; 
+            return true; 
+        } else { 
+            cout << "Required copies not in stock." << endl; 
+            return false; 
+        } 
+    } 
+}; 
+ 
+int main() { 
+    int numBooks; 
+    cout << "Enter the number of books: "; 
+    cin >> numBooks; 
+ 
+    Book* books = new Book[numBooks]; 
+ 
+    for (int i = 0; i < numBooks; i++) { 
+        cout << "\nEnter details for book " << (i + 1) << ":\n"; 
+        books[i].getData(); 
+    } 
+ 
+    string searchTitle, searchAuthor; 
+    cout << "\nEnter title of the book to search: "; 
+    cin.ignore(); 
+    getline(cin, searchTitle); 
+    cout << "Enter author of the book to search: "; 
+    getline(cin, searchAuthor); 
+ 
+    bool found = false; 
+    for (int i = 0; i < numBooks; i++) { 
+        if (books[i].searchBook(searchTitle, searchAuthor)) { 
+            cout << "\nBook found:\n"; 
+            books[i].displayData(); 
+            found = true; 
+ 
+            int copies; 
+            cout << "\nEnter the number of copies required: "; 
+            cin >> copies; 
+            books[i].processSale(copies); 
+            break; 
+        } 
+    } 
+ 
+    if (!found) { 
+        cout << "\nBook not found." << endl; 
+    } 
+ 
+    delete[] books; 
+    return 0; 
+} 
